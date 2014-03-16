@@ -52,7 +52,7 @@ class TbApi extends CApplicationComponent
     {
         parent::init();
         if ($this->assetsPath === null) {
-            $this->assetsPath = Yii::getPathOfAlias('vendor.twbs.bootstrap.dist');
+            $this->assetsPath = realpath(dirname(__DIR__) . '/assets');
         }
     }
 
@@ -92,8 +92,8 @@ class TbApi extends CApplicationComponent
     public function registerYiistrapCss($url = null, $media = '')
     {
         if ($url === null) {
-            $fileName = YII_DEBUG ? 'yiistrap.css' : 'yiistrap.min.css';
-            $url = $this->getAssetsUrl() . '/css/' . $fileName;
+            $fileName = YII_DEBUG ? 'yiistrap.less' : 'yiistrap.min.less';
+            $url = $this->getAssetsUrl() . '/less/' . $fileName;
         }
         Yii::app()->getClientScript()->registerCssFile($url, $media);
     }
